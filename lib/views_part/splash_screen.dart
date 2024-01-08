@@ -39,12 +39,12 @@ class SplashScreen extends StatelessWidget {
 
               // Logo and status
               Flexible(
-
+                flex:3,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    const SizedBox(height: 0),
                     SizedBox(child: Image.asset("lib/assets/logo/gtr.png",fit: BoxFit.fitWidth,)),
-                    const SizedBox(height: 20),
-                    //Text(status, style: subTitle1),
                   ],
                 ),
               ),

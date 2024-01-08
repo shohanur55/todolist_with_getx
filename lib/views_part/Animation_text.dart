@@ -15,7 +15,7 @@ class _AnimatedTextState extends State<AnimatedText>
     super.initState();
 
     _controller = AnimationController(
-      duration: Duration(seconds: 6),
+      duration: Duration(seconds: 5),
       vsync: this,
     );
 

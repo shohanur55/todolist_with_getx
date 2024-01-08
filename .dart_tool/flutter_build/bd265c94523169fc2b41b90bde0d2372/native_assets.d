@@ -1,0 +1,1 @@
+ D:\\FlutterPractice\\todolist_with_getx-main\\.dart_tool\\flutter_build\\bd265c94523169fc2b41b90bde0d2372\\native_assets.yaml: 

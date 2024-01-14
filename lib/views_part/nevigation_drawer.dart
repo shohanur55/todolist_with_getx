@@ -8,7 +8,7 @@ class NDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.purpleAccent,
+     // backgroundColor: Colors.purpleAccent,
       child:Obx(
               () {
             return c.noteslist.isNotEmpty ?
@@ -18,7 +18,7 @@ class NDrawer extends StatelessWidget {
                 final note = c.noteslist[index];
                 return Card(
                   child: ListTile(
-                    tileColor: Colors.amber,
+                    //tileColor: Colors.amber,
                     title: Text(note.title.toString()),
                     leading: Text(note.dates.toString()),
                   ),

@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:intl/intl.dart';
 import '../Database_part/dbHandler.dart';
 import '../Models_part/model.dart';
 
@@ -29,10 +29,12 @@ class TodoController extends GetxController{
     descriptionController.text = description ?? '';
   }
    insertInput(){
+
     dbhandler.insert(
+
       noteModel(
         dates:
-        '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
+        '${DateFormat('dd MMMM, yyyy').format(DateTime.now())}',
         title: titleController.text,
         description: descriptionController.text,
       ),
@@ -52,7 +54,7 @@ class TodoController extends GetxController{
         noteModel(
           id: given_id,
           dates:
-              '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
+          '${DateFormat('dd MMMM, yyyy').format(DateTime.now())}',
          title: titleController.text,
           description: descriptionController.text,
         ),

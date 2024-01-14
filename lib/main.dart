@@ -1,4 +1,6 @@
- import 'package:flutter/material.dart';
+ import 'dart:ui';
+
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todolist_with_getx/views_part/splash_screen.dart';
 
@@ -17,14 +19,31 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
 
+
       theme: ThemeData(
 
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-        useMaterial3: true,
+colorScheme: ColorScheme.fromSeed(
+  seedColor: Colors.transparent,
+  outline: Color(0xFFEDE8FF),
+),
+shadowColor: Colors.white,
+        cardColor: Colors.white,
+
+
+
+       useMaterial3: true,
+
+        appBarTheme: AppBarTheme(
+          centerTitle: true,
+          toolbarHeight: 80,
+        ),
+
       ),
-      home: SplashScreen() ,
+      scrollBehavior: const MaterialScrollBehavior().copyWith(dragDevices: {
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.touch,
+      }),
+      home: SplashScreen(),
     );
   }
 }
-
-

@@ -20,14 +20,11 @@ class InputScreen extends StatelessWidget {
 
   final GlobalKey<FormState> _formKey = GlobalKey();
 
-      // If editing, set initial values from the existing note
-
-
+  // If editing, set initial values from the existing note
 
   @override
   Widget build(BuildContext context) {
-
-    if(is_edit){
+    if (is_edit) {
       var note = controller.noteslist.firstWhere((n) => n.id == id);
       controller.setInitialValues(
         title: note.title,
@@ -35,94 +32,112 @@ class InputScreen extends StatelessWidget {
       );
     }
 
-
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(is_edit ? 'Update List' : 'Input page'),
-          backgroundColor: Colors.cyanAccent,
-          centerTitle: true,
+          title: Text(
+            is_edit ? 'Update List' : 'Input page',
+            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+          ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xFFF6FEF9),
+                  Color(0xFFFFFFFF), // Second color
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+          ),
         ),
-        body: Form(
-          key: _formKey,
-          child: ListView(
-            children: [
-              Padding(padding: EdgeInsets.all(30)),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 28.0),
-                child: TextFormField(
-                  controller: controller.titleController,
-                  decoration: InputDecoration(
-                    hintText: "Title",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide(
-                        color: Colors.teal, // You can set the border color here
-                        width: 2.0,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide(
-                        color: Colors.teal, // You can set the border color here
-                        width: 2.0,
-                      ),
-                    ),
+        body: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(
+                    "lib/assets/images/unnamed.png",
                   ),
-                  validator: (value) {
-                    if (value!.isEmpty) return 'Invalid Task';
-                  },
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 28.0),
-                child: TextFormField(
-                  controller: controller.descriptionController,
-                  decoration: InputDecoration(
-                    hintText: "Description",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide(
-                        color: Colors.teal, // You can set the border color here
-                        width: 2.0,
+                  fit: BoxFit.cover)),
+          child: Form(
+            key: _formKey,
+            child: ListView(
+              children: [
+                Padding(padding: EdgeInsets.all(30)),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                  child: TextFormField(
+                    controller: controller.titleController,
+                    decoration: InputDecoration(
+                      hintText: "Title",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(
+                          color: Colors.teal, // You can set the border color here
+                          width: 2.0,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(
+                          color: Colors.teal, // You can set the border color here
+                          width: 2.0,
+                        ),
                       ),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide(
-                        color: Colors.teal, // You can set the border color here
-                        width: 2.0,
-                      ),
-                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) return 'Invalid Task';
+                    },
                   ),
-                  keyboardType: TextInputType.multiline,
-                  minLines: 5,
-                  maxLines: 8,
-                  validator: (value) {
-                    if (value!.isEmpty) return 'Invalid Task';
-                  },
                 ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  if (!_formKey.currentState!.validate()) return;
-                  is_edit
-                      ? controller.updateInput(given_id: id!)
-                      : controller.insertInput();
-                  Get.off(() => MyHomePage());
-
-                },
-                child: Text(is_edit ? 'Update' : 'Submit',
-                    style: TextStyle(fontSize: 30, color: Colors.cyan)),
-              ),
-            ],
+                SizedBox(
+                  height: 30,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                  child: TextFormField(
+                    controller: controller.descriptionController,
+                    decoration: InputDecoration(
+                      hintText: "Description",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(
+                          color: Colors.teal, // You can set the border color here
+                          width: 2.0,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(
+                          color: Colors.teal, // You can set the border color here
+                          width: 2.0,
+                        ),
+                      ),
+                    ),
+                    keyboardType: TextInputType.multiline,
+                    minLines: 5,
+                    maxLines: 8,
+                    validator: (value) {
+                      if (value!.isEmpty) return 'Invalid Task';
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (!_formKey.currentState!.validate()) return;
+                    is_edit
+                        ? controller.updateInput(given_id: id!)
+                        : controller.insertInput();
+                    Get.off(() => MyHomePage());
+                  },
+                  child: Text(is_edit ? 'Update' : 'Submit',
+                      style: TextStyle(fontSize: 30, color: Colors.cyan)),
+                ),
+              ],
+            ),
           ),
         ),
       ),
